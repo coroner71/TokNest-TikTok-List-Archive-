@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Creator List Extraction and Archive</title>
+    <style>
+        /* TokNest Gradient Background */
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #1a1d2e, #2b2f4c, #3c3f6b); 
+            color: white;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            background: #444b75;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+/* Profile Container - Adjust for better display */
+.profile-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    overflow: auto; /* Allow scrolling within the container if necessary */
+    max-width: 100%; /* Ensure no horizontal scrolling */
+}
+
+/* Profile Card - Adjust width to avoid overflow */
+.profile { 
+    width: 100%; /* Make sure profiles fit on mobile and desktop */
+    max-width: 350px; /* Limit max size */
+    height: auto; 
+    overflow-y: auto; 
+    text-align: center; 
+    background: linear-gradient(135deg, #282c4d, #3a3f6b); 
+    padding: 15px; 
+    border-radius: 10px; 
+    position: relative; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #6469a6;
+}
+
+/* Profile Picture */
+img.profile-pic {
+    width: 100%;  /* Allow the image to stretch to the container's width */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 50%; 
+    object-fit: cover; /* Ensure image is cropped properly */
+    border: 3px solid #a27bff;
+}
+
+
+/* Avoid horizontal scrolling */
+body {
+    overflow-x: hidden;
+}
+
+
+        /* Buttons */
+        button { 
+            background: #6a5acd;
+            color: white; 
+            border: none; 
+            padding: 10px; 
+            cursor: pointer; 
+            border-radius: 5px;
+        }
+
+        .clear-all { 
+            margin-top: 20px; 
+            background: darkred; 
+        }
+
+        /* Links */
+        a { 
+            text-decoration: none; 
+            color: #a27bff; 
+            font-weight: bold;
+        }
+
+        /* Collapsible Header */
+        .collapsible-header {
+            cursor: pointer;
+            font-weight: bold;
+            background: #444b75;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        /* Collapsible Content */
+        .collapsible-content {
+            display: none;
+            margin-top: 5px;
+            background: #2b2f4c;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Upload Batch Section */
+        .batch-upload {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #282c4d, #3a3f6b);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #6469a6;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TikTok Creator List Extraction and Archive</h1>
+
+    <!-- Individual Profile Extraction -->
+    <div class="section-header">Individual Profile Extraction</div>
+    <p>Manually extract data for a single TikTok creator.</p>
+    <input type="text" id="username" placeholder="Enter TikTok username">
+    <button id="getProfileButton">Get Profile Data</button>
+    <button id="refreshProfileButton">Refresh Profile</button>
+    <button class="clear-all" onclick="clearAllProfiles()">Clear All</button>
+
+    <div id="profileContainer" class="profile-container"></div>
+
+    <!-- Multiple Profile Extractions -->
+    <div class="batch-upload">
+        <h2>Multiple Profile Extractions (via Following List Upload)</h2>
+        <p>To extract multiple profiles, first download your Following List from TikTok:</p>
+        <ol>
+            <li>Go to <a href="https://www.tiktok.com/setting" target="_blank">TikTok Settings</a>.</li>
+            <li>Select <strong>Privacy & Safety</strong> → <strong>Download Your Data</strong>.</li>
+            <li>Request your data and wait for TikTok to provide a downloadable file.</li>
+            <li>Once you have the file, extract the usernames and upload it here.</li>
+        </ol>
+        <input type="file" id="batchUpload" accept=".txt,.csv">
+        <p id="uploadStatus"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
